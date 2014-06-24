@@ -36,6 +36,9 @@ public class MainActivityUnitTest extends ActivityUnitTestCase<MainActivity> {
     protected void setUp() throws Exception {
         super.setUp();
 
+        // Set 'dexmaker.dexcache' system property, otherwise sometimes it is null and test will crash
+        System.setProperty("dexmaker.dexcache", getInstrumentation().getTargetContext().getCacheDir().getPath());
+
         mContext = new ContextWrapper(getInstrumentation().getTargetContext()) {
             @Override
             public Context getApplicationContext() {
